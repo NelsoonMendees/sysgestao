@@ -1,5 +1,6 @@
 # Course
 - Análise e Desenvolvimento de Sistemas - IV
+    * Desenvolvimento de Web Services
 
 # Teacher
 - Roussian Gaioso
@@ -8,5 +9,8 @@
  - Nelson Gomes Ferreira Mendes Neto
 
 # Project Information
- - Projeto referente a aula de API Rest - Professor Roussian
- - Faculdade Senac Goiás.
+ - Projeto referente a aula de Serviços Restful com Spring
+ - Finalizar o desenvolvimento dos endpois de:
+    * Put
+    * Patch
+    * Delete
