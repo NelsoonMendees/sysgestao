@@ -1,10 +1,13 @@
 package br.com.sysgestao.sysgestao.resource;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.sysgestao.sysgestao.domain.Cliente;
 import br.com.sysgestao.sysgestao.domain.Endereco;
+import br.com.sysgestao.sysgestao.error.ApiError;
 import br.com.sysgestao.sysgestao.service.ClienteService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/Clientes")
@@ -37,16 +42,11 @@ public class ClienteResource {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> getClienteById(@PathVariable("id") Long id) {
         Cliente cliente;
 
-        try {
-            cliente = clienteService.findById(id);
-            return ResponseEntity.ok(cliente);
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
-
+        cliente = clienteService.findById(id);
+        return ResponseEntity.ok(cliente);
     }
 
     @PostMapping
@@ -85,15 +85,16 @@ public class ClienteResource {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletarClientePorId(@PathVariable("id") Long id) {
-
-        try {
-            clienteService.findById(id);
-            clienteService.deleteClientById(id);
-            return ResponseEntity.noContent().build();
-            
-        } catch (Exception e) {
-            return ResponseEntity.notFound().build();
-        }
+        clienteService.findById(id);
+        clienteService.deleteClientById(id);
+        return ResponseEntity.noContent().build();
     }
 
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<ApiError> handlerNoSuchElementException(NoSuchElementException exception,
+            HttpServletRequest request) {
+        ApiError apiError = new ApiError(HttpStatus.NOT_FOUND.value(), "Cliente não encontrado!",
+                request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiError);
+    }
 }
