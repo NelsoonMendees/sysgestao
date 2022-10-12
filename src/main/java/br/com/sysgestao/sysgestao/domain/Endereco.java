@@ -28,22 +28,6 @@ public class Endereco {
     public Endereco() {
     }
 
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public void setUf(String uf) {
-        this.uf = uf;
-    }
-
     public Long getId() {
         return id;
     }
@@ -68,6 +52,22 @@ public class Endereco {
         this.bairro = bairro;
     }
 
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
     public String getCep() {
         return cep;
     }
@@ -75,5 +75,19 @@ public class Endereco {
     public void setCep(String cep) {
         this.cep = cep;
     }
+
+    /*
+     * 1 - Endereco e idcliente
+     * end.id != null atualiza o endereço
+     * end.id == null
+     * IDCliente --> end != null end == null
+     * end == null save (endereco)
+     * cli.end = end
+     * cli
+     * end != null
+     * exclui
+     * salva novo
+     * atualiza cliente
+     */
 
 }

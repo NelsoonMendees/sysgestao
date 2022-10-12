@@ -1,12 +1,17 @@
 package br.com.sysgestao.sysgestao.error;
 
 import java.time.Instant;
+import java.util.HashMap;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
+@JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class ApiError {
     private int status;
     private String message;
     private Long timestamp;
     private String path;
+
+    private HashMap<String, String> validacaoErrorCampos;
 
     public ApiError() {
     }
@@ -50,4 +55,11 @@ public class ApiError {
         this.path = path;
     }
 
+    public HashMap<String, String> getValidacaoErrorCampos() {
+        return validacaoErrorCampos;
+    }
+
+    public void setValidacaoErrorCampos(HashMap<String, String> validacaoErrorCampos) {
+        this.validacaoErrorCampos = validacaoErrorCampos;
+    }
 }
