@@ -1,16 +1,12 @@
-# Course
+# Curso
 - Análise e Desenvolvimento de Sistemas - IV
     * Desenvolvimento de Web Services
 
-# Teacher
+# Professor
 - Roussian Gaioso
 
-# Student
+# Aluno
  - Nelson Gomes Ferreira Mendes Neto
 
-# Project Information
- - Projeto referente a aula de Serviços Restful com Spring
- - Finalizar o desenvolvimento dos endpois de:
-    * Put
-    * Patch
-    * Delete
+# Informações do projeto
+ - Projeto referente a aula de Serviços Restful com Spring Boot e Maven.
