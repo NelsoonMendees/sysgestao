@@ -2,6 +2,7 @@ package br.com.sysgestao.sysgestao.error;
 
 import java.time.Instant;
 import java.util.HashMap;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
